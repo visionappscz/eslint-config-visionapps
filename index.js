@@ -5,7 +5,7 @@ module.exports = {
     },
     extends: [
         'airbnb',
-        'promise'
+        'plugin:promise/recommended'
     ],
     rules: {
         'import/order': ['error', {

@@ -1,6 +1,6 @@
 {
   "name": "@visionappscz/eslint-config-visionapps",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "VisionApps' shareable config for eslint.",
   "keywords": [
     "eslint",
