@@ -4,7 +4,8 @@ module.exports = {
         sourceType: 'module'
     },
     extends: [
-        'airbnb'
+        'airbnb',
+        'promise'
     ],
     rules: {
         'import/order': ['error', {
