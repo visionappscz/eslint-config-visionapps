@@ -1,6 +1,6 @@
 {
   "name": "@visionappscz/eslint-config-visionapps",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "VisionApps' shareable config for eslint.",
   "keywords": [
     "eslint",
@@ -29,11 +29,11 @@
     "eslint-plugin-promise": "^4.2.1"
   },
   "peerDependencies": {
-    "eslint": "^6.3.0",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.0.1"
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^2.5.0"
   },
   "engines": {
     "node": ">= 6"
