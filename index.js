@@ -1,28 +1,22 @@
 module.exports = {
-    parserOptions: {
-        ecmaVersion: 11,
-        sourceType: 'module'
-    },
     extends: [
         'airbnb',
         'plugin:promise/recommended',
-
     ],
     plugins: [
         'react-hooks'
     ],
     rules: {
         'import/order': ['error', {
-            'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
+            groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
         }],
         'object-curly-newline': ['error', {
-            'multiline': true,
-            'minProperties': 2,
-            'consistent': true
+            multiline: true,
+            minProperties: 2,
+            consistent: true
         }],
         'object-curly-spacing': ['error', 'always'],
-        'object-property-newline': ['error', { 'allowMultiplePropertiesPerLine': false }],
-        'no-multiple-empty-lines': ['error', { 'max': 1 }],
+        'no-multiple-empty-lines': ['error', { max: 1 }],
         'no-undef-init': ['error'],
         'promise/catch-or-return': ['off'],
         'promise/no-nesting': ['off'],
