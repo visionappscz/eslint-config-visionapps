@@ -7,3 +7,5 @@ VisionApps' shareable config for [eslint](https://github.com/eslint/eslint) that
 [react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) and 
 [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) with
 [more strict rules](./index.js).
+
+Do not forget to install npm peer dependencies listed in the [Airbnb eslint config](https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb/package.json).

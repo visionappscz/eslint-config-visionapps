@@ -10,6 +10,14 @@ module.exports = {
         'import/order': ['error', {
             groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
         }],
+        'max-len': ['error', {
+          code: 120,
+          ignoreTrailingComments: true,
+          ignoreUrls: true,
+          ignoreStrings: true,
+          ignoreTemplateLiterals: true,
+          ignoreRegExpLiterals: true,
+        }],
         'object-curly-newline': ['error', {
             multiline: true,
             minProperties: 2,
