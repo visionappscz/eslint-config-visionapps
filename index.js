@@ -1,4 +1,8 @@
 module.exports = {
+    parserOptions: {
+        ecmaVersion: 2020,
+        sourceType: 'module'
+    },
     extends: [
         'airbnb',
         'plugin:promise/recommended',
