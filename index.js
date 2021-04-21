@@ -32,6 +32,7 @@ module.exports = {
         'no-undef-init': ['error'],
         'promise/catch-or-return': ['off'],
         'promise/no-nesting': ['off'],
+        'react/destructuring-assignment': ['off'],
         'react/jsx-props-no-spreading': ['off'],
         'react-hooks/exhaustive-deps': ['error'],
         'react-hooks/rules-of-hooks': ['error'],
