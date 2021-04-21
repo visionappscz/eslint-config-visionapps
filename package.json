@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/visionappscz/eslint-config-visionapps#readme",
   "dependencies": {
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-plugin-promise": "^4.2.1"
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-promise": "^5.1.0"
   }
 }
