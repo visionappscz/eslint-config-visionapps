@@ -14,6 +14,13 @@ module.exports = {
         'import/order': ['error', {
             groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
         }],
+        'jsx-a11y/label-has-associated-control': ['error', {
+            labelComponents: [],
+            labelAttributes: [],
+            controlComponents: [],
+            assert: 'either',
+            depth: 25
+        }],
         'max-len': ['error', {
           code: 120,
           ignoreTrailingComments: true,
