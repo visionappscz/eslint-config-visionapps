@@ -44,6 +44,19 @@ module.exports = {
         'react/jsx-props-no-spreading': ['off'],
         'react-hooks/exhaustive-deps': ['error'],
         'react-hooks/rules-of-hooks': ['error'],
+        'react/no-unstable-nested-components': ['off'],
+        'react/function-component-definition': ['error', {
+          namedComponents: 'arrow-function',
+          unnamedComponents: 'arrow-function'
+        }],
+        'react/jsx-sort-props': ['error', {
+          ignoreCase: true,
+          callbacksLast: false,
+          shorthandFirst: false,
+          shorthandLast: false,
+          noSortAlphabetically: false,
+          reservedFirst: false,
+        }],
         'sort-keys': ['error', 'asc']
     }
 };
