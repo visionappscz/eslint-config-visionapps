@@ -52,6 +52,7 @@ module.exports = {
         'react/jsx-sort-props': ['error', {
           ignoreCase: true,
           callbacksLast: false,
+          locale: 'en',
           shorthandFirst: false,
           shorthandLast: false,
           noSortAlphabetically: false,
