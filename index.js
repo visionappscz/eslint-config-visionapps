@@ -12,6 +12,7 @@ module.exports = {
         'react-hooks'
     ],
     rules: {
+        curly: ["error", "all"],
         'import/order': ['error', {
             groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
         }],
