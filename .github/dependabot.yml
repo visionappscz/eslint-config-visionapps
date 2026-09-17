@@ -1,0 +1,8 @@
+version: 2
+updates:
+  # Without this the workflows silently fall behind; four actions were already a
+  # major version behind when they were added.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

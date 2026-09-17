@@ -1,0 +1,98 @@
+name: Lint
+
+on: [ pull_request ]
+
+permissions:
+  contents: read
+
+# The Node.js version is the active LTS, the same major as in `.nvmrc`. Both are
+# pinned so that a broken npm release cannot break the build, see
+# <https://github.com/nodejs/node/issues/62425#issuecomment-4200715930>.
+# `NODE_VERSION` is quoted, YAML would read `24.20` as the number `24.2`.
+env:
+  NODE_VERSION: '24.20'
+  NPM_VERSION: 11.19.0
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install npm@${{ env.NPM_VERSION }}
+        run: npm install -g npm@${{ env.NPM_VERSION }}
+
+      - name: Print Node.js and npm version
+        run: node --version && npm --version
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run eslint
+
+      # `npm run eslint` exercises the base config only, because the package itself is
+      # plain Node ESM. Resolve the whole exported config against a JavaScript and a
+      # TypeScript fixture so that a broken React or TypeScript part, or a change to the
+      # order the configs are composed in, cannot ship with a green build.
+      - name: Check the exported config resolves
+        run: |
+          mkdir -p .config-check
+          echo 'export const value = 1;' > .config-check/fixture.jsx
+          echo 'export const value = 1;' > .config-check/fixture.tsx
+          echo '{ "compilerOptions": { "jsx": "react-jsx", "strict": true }, "include": ["*.ts", "*.tsx"] }' > .config-check/tsconfig.json
+          npx eslint -c inspect.config.mjs --print-config .config-check/fixture.jsx > jsx.json
+          npx eslint -c inspect.config.mjs --print-config .config-check/fixture.tsx > tsx.json
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs";
+
+            const jsx = JSON.parse(readFileSync("jsx.json", "utf8")).rules;
+            const tsx = JSON.parse(readFileSync("tsx.json", "utf8")).rules;
+            const failures = [];
+            const check = (name, condition) => {
+              if (!condition) {
+                failures.push(name);
+              }
+            };
+
+            check("React rules reach TypeScript files", tsx["react-hooks/rules-of-hooks"]?.[0] === 2);
+            check("TypeScript `import-x/extensions` wins on .tsx", tsx["import-x/extensions"]?.[2]?.ts === "never");
+            check("base `import-x/extensions` stays on .jsx", jsx["import-x/extensions"]?.[2]?.ts === undefined);
+            check("our `promise` override wins", jsx["promise/catch-or-return"]?.[0] === 0);
+            check("`allowAsProps` is set", jsx["react/no-unstable-nested-components"]?.[1]?.allowAsProps === true);
+
+            if (failures.length > 0) {
+              console.error(`The exported config does not resolve as expected:\n  ${failures.join("\n  ")}`);
+              process.exit(1);
+            }
+
+            console.log("The exported config resolves as expected.");
+          '
+
+      # The package publishes `src` without `src/docs`, which is easy to break by
+      # editing `files` in package.json. Fail the build instead of shipping the docs.
+      - name: Check published files
+        run: |
+          npm pack --dry-run --json > pack.json
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs";
+
+            const [{ files }] = JSON.parse(readFileSync("pack.json", "utf8"));
+            const paths = files.map((file) => file.path);
+            const docs = paths.filter((path) => path.startsWith("src/docs"));
+
+            console.log(paths.join("\n"));
+
+            if (docs.length > 0) {
+              console.error(`\nDocumentation must not be published: ${docs.join(", ")}`);
+              process.exit(1);
+            }
+          '
