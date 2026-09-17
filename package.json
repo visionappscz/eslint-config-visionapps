@@ -8,6 +8,8 @@
     "config",
     "visionapps",
     "javascript",
+    "typescript",
+    "react",
     "styleguide"
   ],
   "author": "visionappscz",
@@ -16,24 +18,31 @@
     "type": "git",
     "url": "https://github.com/visionappscz/eslint-config-visionapps.git"
   },
-  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.mjs",
+    "./package.json": "./package.json"
+  },
   "files": [
-    "index.js"
+    "src",
+    "!src/docs"
   ],
   "bugs": {
     "url": "https://github.com/visionappscz/eslint-config-visionapps/issues"
   },
   "homepage": "https://github.com/visionappscz/eslint-config-visionapps#readme",
-  "dependencies": {
-    "eslint": "^8.57.1",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-promise": "^7.2.1",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.1"
+  "peerDependencies": {
+    "eslint": "^9.22.0",
+    "typescript": ">=5.0.0"
   },
-  "overrides": {
-    "eslint-plugin-react-hooks": "^7.1.1"
+  "dependencies": {
+    "eslint-config-airbnb-extended": "^3.2.0",
+    "eslint-plugin-perfectionist": "^5.11.0",
+    "eslint-plugin-promise": "^7.3.0",
+    "globals": "^17.8.0",
+    "typescript-eslint": "^8.70.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.5"
   }
 }
