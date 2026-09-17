@@ -29,7 +29,8 @@
   ],
   "scripts": {
     "eslint": "eslint .",
-    "eslint:fix": "eslint . --fix"
+    "eslint:fix": "eslint . --fix",
+    "inspect": "npx --yes @eslint/config-inspector --config inspect.config.mjs"
   },
   "bugs": {
     "url": "https://github.com/visionappscz/eslint-config-visionapps/issues"
