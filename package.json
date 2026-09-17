@@ -27,6 +27,10 @@
     "src",
     "!src/docs"
   ],
+  "scripts": {
+    "eslint": "eslint .",
+    "eslint:fix": "eslint . --fix"
+  },
   "bugs": {
     "url": "https://github.com/visionappscz/eslint-config-visionapps/issues"
   },
