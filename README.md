@@ -1,11 +1,44 @@
 # eslint-config-visionapps
 
-[![dependencies Status](https://david-dm.org/visionappscz/eslint-config-visionapps/status.svg)](https://david-dm.org/visionappscz/eslint-config-visionapps)
-[![peerDependency Status](https://david-dm.org/visionappscz/eslint-config-visionapps/peer-status.svg)](https://david-dm.org/visionappscz/eslint-config-visionapps?type=peer)
+VisionApps' shareable [ESLint](https://eslint.org) config. It extends
+[eslint-config-airbnb-extended](https://github.com/eslint-config/airbnb-extended)
+(the maintained successor of `eslint-config-airbnb`,
+`eslint-config-airbnb-base` and `eslint-config-airbnb-typescript`) and
+[eslint-plugin-promise](https://github.com/eslint-community/eslint-plugin-promise)
+with [more strict rules](./src/docs/rules.md).
 
-VisionApps' shareable config for [eslint](https://github.com/eslint/eslint) that extends [eslint-config-airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb),
-[react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) and 
-[eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) with
-[more strict rules](./index.js).
+Flat config only, ESLint 9 and newer. Legacy `.eslintrc*` files are not
+supported; use version 1.x for those.
 
-Do not forget to install npm peer dependencies listed in the [Airbnb eslint config](https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb/package.json).
+## Installation
+
+```sh
+npm install --save-dev eslint @visionappscz/eslint-config-visionapps
+```
+
+All plugins are bundled. Create `eslint.config.mjs` and spread the parts the
+project needs, in this order:
+
+```js
+import { configs } from '@visionappscz/eslint-config-visionapps';
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig([
+  ...configs.base.recommended,
+  ...configs.react.recommended,
+  ...configs.base.typescript,
+  ...configs.react.typescript,
+]);
+```
+
+A JavaScript project spreads the first one, a React project the first two. The
+`typescript` configs are additions to the `recommended` ones, not replacements.
+
+## Documentation
+
+* [Installation](./src/docs/installation.md)
+* [Configs](./src/docs/configs.md)
+* [Rules](./src/docs/rules.md)
+* [Migration from 1.x](./src/docs/migration.md)
+* [Development](./src/docs/development.md)
+* [Releasing](./src/docs/releasing.md)
