@@ -1,5 +1,9 @@
 # eslint-config-visionapps
 
+> ⚠️This package is no longer maintained. Use
+> [`@react-ui-org/eslint-config`](https://github.com/react-ui-org/eslint-config)
+> instead.
+
 [![dependencies Status](https://david-dm.org/visionappscz/eslint-config-visionapps/status.svg)](https://david-dm.org/visionappscz/eslint-config-visionapps)
 [![peerDependency Status](https://david-dm.org/visionappscz/eslint-config-visionapps/peer-status.svg)](https://david-dm.org/visionappscz/eslint-config-visionapps?type=peer)
 
